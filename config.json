@@ -1,0 +1,134 @@
+{
+"Tabs": [
+    {
+      "Name": "On-Premise",
+      "Buttons": [
+        {
+          "Content": "Get All AD User Accounts",
+          "ScriptPath": ".\\Scripts\\GetAllADUsers.ps1",
+          "ToolTip": "Exports a list of all AD user accounts with their attributes into an Excel document.",
+		  "Group": "AD Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        },
+        {
+          "Content": "Clean Scanned Docuemnts Folders",
+          "ScriptPath": "C:\\Path\\To\\Script2.ps1",
+          "ToolTip": "Removes all documents older than 30 days from each department's ScannedImages folder.",
+		  "Group": "Maintenance",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": true
+        },
+        {
+          "Content": "AD Groups and their Group Members",
+          "ScriptPath": "C:\\Path\\To\\Script3.ps1",
+          "ToolTip": "Exports a list of all AD Groups with their Group Members to an Excel document.",
+		  "Group": "AD Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false		  
+        },
+        {
+          "Content": "Exchange Mailbox List",
+          "ScriptPath": "C:\\Path\\To\\Script1.ps1",
+          "ToolTip": "Exports a list of all Exchange mailboxes from on-premises servers.",
+		  "Group": "Exchange Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        },
+        {
+          "Content": "Update Employee Managers/Titles",
+          "ScriptPath": "C:\\Path\\To\\Script1.ps1",
+          "ToolTip": "Uses the Employee List report from ADP to update all active employee user accounts with the correct Managers and Job Titles.",
+		  "Group": "AD Updates",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": true,
+		  "DataModified": "Active Directory User Objects"
+        },
+		{
+          "Content": "Create a New User",
+          "ScriptPath": "C:\\Path\\To\\Script1.ps1",
+          "ToolTip": "Creates a new local AD user account.  Used for new employees, contractors, temps, vendors, etc.",
+		  "Group": "AD Updates",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": true,
+		  "DataModified": "Active Directory User Objects, Group Memberships"
+        },
+		{
+          "Content": "List Files in C:\\Windows",
+          "ScriptPath": ".\\Scripts\\folderstest.ps1",
+          "ToolTip": "Runs Get-ChildItem on C:\\Windows",
+		  "Group": "",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": true,
+		  "DataModified": "None"
+        }	
+      ]
+    },
+    {
+      "Name": "Support Desk",
+      "Buttons": [
+        {
+          "Content": "Support Desk Tickets in 2023",
+          "ScriptPath": "C:\\Path\\To\\Script3.ps1",
+          "ToolTip": "Exports a list of all Support Desk tickets submitted in 2023 to an Excel document.",
+		  "Group": "Ticket Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        },
+        {
+          "Content": "Apps Support Tickets in 2023",
+          "ScriptPath": "C:\\Path\\To\\Script3.ps1",
+          "ToolTip": "Exports a list of all Apps Support tickets submitted in 2023 to an Excel document.",
+		  "Group": "Ticket Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        },
+        {
+          "Content": "All Computers Purchased in 2020+",
+          "ScriptPath": "C:\\Path\\To\\Script4.ps1",
+          "ToolTip": "Exports a list of all laptop, desktop, and workstations assets purchased since 01/01/2020 to an Excel document.",
+		  "Group": "Asset Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        },
+        {
+          "Content": "All Hardware Purchased in 2020+",
+          "ScriptPath": "C:\\Path\\To\\Script4.ps1",
+          "ToolTip": "Exports a list of all hardware with asset tags purchased since 01/01/2020 to an Excel document.",
+		  "Group": "Asset Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        }		
+      ]
+    },
+    {
+      "Name": "Microsoft 365",
+      "Buttons": [
+        {
+          "Content": "Get All AzureAD Accounts",
+          "ScriptPath": "C:\\Path\\To\\Script3.ps1",
+          "ToolTip": "Exports a list of all AzureAD accounts with their attributes and assigned licenses to an Excel document.",
+		  "Group": "AzureAD Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        },
+        {
+          "Content": "Exchange Online Mailboxes",
+          "ScriptPath": "C:\\Path\\To\\Script4.ps1",
+          "ToolTip": "Exports a list of all EXO mailboxes, including the size, owner, user access rights, and litigation hold status to an Excel document.",
+		  "Group": "Exchange Online Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        },
+        {
+          "Content": "EXO Mailboxes with Forwarding Enabled",
+          "ScriptPath": "C:\\Path\\To\\Script4.ps1",
+          "ToolTip": "Exports a list of all EXO mailboxes that have mail forwarding enabled, via rules or policy, to an Excel document.",
+		  "Group": "Exchange Online Reports",
+		  "CreatesFiles": true,
+		  "ModifiesExistingData": false
+        }		
+      ]
+    }	
+  ]
+}

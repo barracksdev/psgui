@@ -1,0 +1,48 @@
+{
+"Tabs": [
+    {
+      "Name": "Tab 1",
+      "Buttons": [
+        {
+          "Content": "Script 1",
+          "ScriptPath": ".\\Scripts\\Script1.ps1",
+          "ToolTip": "ToolTip description could be something like:`n`nExports data into a spreadsheet.",
+		  "Group": "Group Name 1",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": false
+        },
+		{
+          "Content": "Script 2",
+          "ScriptPath": ".\\Scripts\\Script2.ps1",
+          "ToolTip": "ToolTip description for Script 2 here.",
+		  "Group": "Group Name 1",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": false
+        },
+		{
+          "Content": "Script 3",
+          "ScriptPath": ".\\Scripts\\Scriptsdiufhaisudhf.ps1",
+          "ToolTip": "This path is invalid on purpose to show an error.",
+		  "Group": "Group Name 2",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": false
+        },
+		{
+          "Content": "Script 4",
+          "ScriptPath": ".\\Scripts\\Script4.ps1",
+          "ToolTip": "First, Mr. Samir Naga... Naga... Naga... Not gonna work here anymore, anyway.",
+		  "Group": "Group Name 3",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": false
+        },
+		{
+          "Content": "Script 5",
+          "ScriptPath": ".\\Scripts\\Script5.ps1",
+          "ToolTip": "Just to show groups overflowing.",
+		  "Group": "Group Name 4",
+		  "CreatesFiles": false,
+		  "ModifiesExistingData": false
+        }
+	  ]
+	}
+}
