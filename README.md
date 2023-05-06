@@ -1,3 +1,5 @@
+![psguisample](https://user-images.githubusercontent.com/132730427/236600874-23b1b6dc-8009-4f64-b31a-f618f6441c21.png)
+
 # PSGui
 
 This Powershell script will create a GUI for launching your own custom Powershell scripts.  It was created primarily through prompts via ChatGPT-4.
@@ -9,6 +11,10 @@ This configuration file is what the script uses to create the buttons for launch
 
 You can additionally launch an alternate config file using the "-load" command.
 * For example: PSGui.ps1 -load altconfig.json
+
+Two samples scripts are included in the Scripts folder.  These are primarily to show that the buttons work and to show the button color changes if a script file is not found.
+* One simply lists the files found in C:\Windows\.
+* The other will connect to a local domain controller and export a list of all the user objects into an Excel spreadsheet (this requires the ImportExcel module).
 
 # config.json
 Tabs and Buttons are defined in this configuration file.
