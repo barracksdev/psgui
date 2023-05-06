@@ -26,8 +26,8 @@ Button settings listed in the config file are:
 * "ScriptPath": ".\\Path\\To\\Your\\Script.ps1"
 * "ToolTip": "Additional details that can be provided when hovering over the button."
 * "Group": "Group Name 1"
-* "CreatesFiles": false --- NOT USED YET
-* "ModifiesExistingData": false --- NOT USED YET
+* "CreatesFiles": false --- UNUSED
+* "ModifiesExistingData": false --- UNUSED
 
 The organization of GUI elements is ordered by:
 1. Tabs by their "Name" values
