@@ -1,3 +1,3 @@
-Get-ChildItem C:\Python\Python311\DLLs
+Get-ChildItem C:\Windows
 
 pause
