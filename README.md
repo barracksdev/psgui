@@ -71,4 +71,4 @@ This example has two tabs.  The first tab contains three buttons organized into 
         - Group: ""
 
 # Other Details
-While there are "Username" and "Password" boxes along with a "Use Modern Auth" checkbox, these do not do anything yet and can be ignored.
+While there are "Username" and "Password" boxes along with a "Use Modern Auth" checkbox, these do not do anything and are remnants from a much earlier version of the script.  They are kept in case someone wants to customize that area and to make it easier for them to understand the UI code used for it.
