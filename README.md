@@ -2,43 +2,73 @@
 
 # PSGui
 
-This Powershell script will create a GUI for launching your own custom Powershell scripts.  It was created primarily through prompts via ChatGPT-4.
+This PowerShell script creates a GUI for launching your custom PowerShell scripts.  It was created through prompts given to ChatGPT-4.
 
 # Usage
-Launch PSGui.ps1 from Powershell and it will load the configuration found in "config.json".
+Launch `.\PSGui.ps1` from PowerShell, and it will load the configuration found in `config.json`.
 
-This configuration file is what the script uses to create the buttons for launching other Powershell scripts.
+This configuration file is used by the script to create the buttons for launching other pre-existing PowerShell scripts defined and created by the user.
 
-You can additionally launch an alternate config file using the "-jsonconfig" command.
-* For example: PSGui.ps1 -jsonconfig altconfig.json
+Alternate configuration files can by loaded using the `-jsonconfig` parameter.
+* For example: `PSGui.ps1 -jsonconfig altconfig.json`
 
-Two samples scripts are included in the Scripts folder.  These are primarily to show that the buttons work and to show the button color changes if a script file is not found.
-* One simply lists the files found in C:\Windows\.
-* The other will connect to a local domain controller and export a list of all the user objects into an Excel spreadsheet (this requires the ImportExcel module).
+A sample script file is included in the `Scripts` folder. This is included to show script launching functionality.  The script simply lists the files found in `C:\Windows\` using `Get-ChildItem C:\Windows`.
 
-# config.json
-Tabs and Buttons are defined in this configuration file.
+# Configuration and Layout
+Tabs, buttons, and settings are defined using a JSON file named `config.json`.
 
-Each Tab object contains its own array of Buttons objects, and each Button contains a list of settings.
+Each tab object contains its own array of button objects, and each button objects contains several key value pairs.
 
-Button settings listed in the config file are:
-* "Content": "Button Label Text"
-* "ScriptPath": ".\\Path\\To\\Your\\Script.ps1"
-* "ToolTip": "Additional details that can be provided when hovering over the button."
-* "Group": "Group Name 1"
-* "CreatesFiles": false --- UNUSED
-* "ModifiesExistingData": false --- UNUSED
+Current button settings used are:
+* `Content` Label text displayed on the button
+* `ScriptPath` Path to the PowerShell script to be executed
+* `ToolTip` Tooltip text displayed when hovering over the button
+* `Group` Group name the button belongs to, used to organize buttons within a tab
 
 The organization of GUI elements is ordered by:
-1. Tabs by their "Name" values
-2. Buttons by their "Group" values
-3. Buttons by their "Content" values within their Group
+1. Tabs in the the order they're defined in the configuration file
+2. Button Groups alphabetically by the `Group` values found within in each button
+3. Buttons alphabetically by their `Content` values
 
-If a Button does not have a Group value assigned, it will default to a "General Scripts" group.
+If a button does not have a `Group` value assigned, it will default to a `General Scripts` group.
+
+The script will also try to verify the path of each `ScriptPath` value for every button.  If it cannot find the referenced file, the button will color will change to light red and show an error message in the button tooltip.  If a red button is clicked, it will return a Windows message stating the file cannot be found along with the path is trying to verify.
+
+config.json tree structure view
+This is a tree view showing the general layout of the default configuration file.
+
+This example has two tabs.  The first tab contains three buttons organized into two groups.  The second tab has buttons organized into two groups.  Since Button 5 does not have a `Group` name value, it will automatically be placed into a group named `General Scripts`.
+
+- Tabs
+  - Tab 1 // Name of the tab in the GUI
+    - Buttons
+      - Button 1 
+        - Content: "Button 1" // Label text displayed on the button
+        - ScriptPath: ".\\Path\\To\\Your\\Script1.ps1" // Path to the PowerShell script to be executed
+        - ToolTip: "Description for Button 1" // Tooltip text displayed when hovering over the button
+        - Group: "Group Name 1" // Group name the button belongs to, used to organize buttons within a tab
+      - Button 2
+        - Content: "Button 2"
+        - ScriptPath: ".\\Path\\To\\Your\\Script2.ps1"
+        - ToolTip: "Description for Button 2"
+        - Group: "Group Name 1"
+      - Button 3
+        - Content: "Button 3"
+        - ScriptPath: ".\\Path\\To\\Your\\Script3.ps1"
+        - ToolTip: "Description for Button 3"
+        - Group: "Group Name 2"
+  - Tab 2
+    - Buttons
+      - Button 4
+        - Content: "Button 4"
+        - ScriptPath: ".\\Path\\To\\Your\\Script4.ps1"
+        - ToolTip: "Description for Button 4"
+        - Group: "Group Name 1"
+      - Button 5
+        - Content: "Button 5"
+        - ScriptPath: ".\\Path\\To\\Your\\Script5.ps1"
+        - ToolTip: "Description for Button 5"
+        - Group: ""
 
 # Other Details
 While there are "Username" and "Password" boxes along with a "Use Modern Auth" checkbox, these do not do anything yet and can be ignored.
-
-The script will verify the path of each ScriptPath value in every button.  If it cannot find the referenced file, the button will appear red and show an error message in the hover tooltip.  If a red button is clicked, it will return an Windows message stating the file cannot be found along with the path is checking.
-
-
