@@ -57,11 +57,11 @@ if (Test-Path $jsonconfig) {
     try {
         $config = Get-Content -Path $jsonconfig -Raw | ConvertFrom-Json
     } catch {
-        Write-Host "Invalid JSON configuration file specified: $Config. Loading default config.json file."
+        Write-Host "Invalid JSON configuration file specified: $jsonconfig. Loading default config.json file."
         $config = Get-Content -Path "config.json" -Raw | ConvertFrom-Json
     }
 } else {
-    Write-Host "Configuration file not found: $Config. Loading default config.json file."
+    Write-Host "Cannot find the configuration file specified: $jsonconfig. Loading default config.json file."
     $config = Get-Content -Path "config.json" -Raw | ConvertFrom-Json
 }
 
