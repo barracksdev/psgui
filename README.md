@@ -32,7 +32,7 @@ The organization of GUI elements is ordered by:
 
 If a button does not have a `Group` value assigned, it will default to a `General Scripts` group.
 
-The script will also try to verify the path of each `ScriptPath` value for every button.  If it cannot find the referenced file, the button will color will change to light red and show an error message in the button tooltip.  If a red button is clicked, it will return a Windows message stating the file cannot be found along with the path is trying to verify.
+The script will also try to verify the path of each `ScriptPath` value for every button.  If it cannot find the referenced file, the button will color will change to light red.  If a red button is clicked, it will return a Windows message stating the file cannot be found along with the path is trying to verify.
 
 # config.json tree structure view
 This is a tree view showing the general layout of the default configuration file.
@@ -71,4 +71,4 @@ This example has two tabs.  The first tab contains three buttons organized into 
         - Group: ""
 
 # Other Details
-While there are "Username" and "Password" boxes along with a "Use Modern Auth" checkbox, these do not do anything and are remnants from a much earlier version of the script.  They are kept in case someone wants to customize that area and to make it easier for them to understand the UI code used for it.
+There previously were fields at the top of the window for "Username", "Password", and "Use Modern Auth".  These did not do anything and were remnants from a much earlier version of the script.  These variables for these have been commented out of the script and the XAML settings to create these buttons has been moved just below the XAML area and commented out.  They are kept there in case someone wants to add those fields back to the GUI for customization.
