@@ -1,5 +1,5 @@
 param (
-    [string]$jsonconfig = "config.json"
+    [string]$jsonconfig = "$PSScriptRoot\config.json"#"config.json"
 )
 
 # Load assemblies
