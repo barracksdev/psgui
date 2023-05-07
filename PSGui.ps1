@@ -14,17 +14,15 @@ Add-Type -AssemblyName PresentationFramework,System.Windows.Forms
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Label Content="Username:"/>
-            <TextBox Name="UsernameTextBox" Width="120" Margin="5,0,10,0"/>
-            <Label Content="Password:"/>
-            <PasswordBox Name="PasswordTextBox" Width="120" Margin="5,0,10,0"/>
-            <TextBox Name="PasswordAsteriskTextBox" Width="120" Margin="5,0,10,0" Visibility="Collapsed"/>
-            <CheckBox Name="ModernAuthCheckBox" Content="Use Modern Auth" Margin="5,0,10,0" VerticalAlignment="Center"/>
-        </StackPanel>
         <TabControl Name="tabControl" Grid.Row="1" Margin="10"/>
-    </Grid>
+        <StatusBar Name="statusBar" Grid.Row="2">
+			<StatusBarItem>
+				<TextBlock Name="statusText" Text="Please select a script to launch."/>
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
 	<Window.Resources>
 		<Style TargetType="{x:Type Button}" x:Key="CustomButtonStyle">
 			<Setter Property="Background" Value="LightGray"/>
@@ -38,7 +36,7 @@ Add-Type -AssemblyName PresentationFramework,System.Windows.Forms
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsPressed" Value="True">
-								<Setter Property="Background" Value="#FFB0B0B0" TargetName="border"/>
+								<Setter Property="Background" Value="#B0B0B0" TargetName="border"/>
 							</Trigger>
 							<Trigger Property="IsMouseOver" Value="True">
 								<Setter Property="Background" Value="Yellow" TargetName="border"/>
@@ -51,6 +49,19 @@ Add-Type -AssemblyName PresentationFramework,System.Windows.Forms
 	</Window.Resources>
 </Window>
 "@
+
+### This removed stackpanel used to display the username, password, and modern auth parts of the gui.
+### You can uncomment this and move it back to the XAML area above just after </Grid.RowDefinitions>
+#
+#        <StackPanel Orientation="Horizontal" Margin="10">
+#            <Label Content="Username:"/>
+#            <TextBox Name="UsernameTextBox" Width="120" Margin="5,0,10,0"/>
+#            <Label Content="Password:"/>
+#            <PasswordBox Name="PasswordTextBox" Width="120" Margin="5,0,10,0"/>
+#            <TextBox Name="PasswordAsteriskTextBox" Width="120" Margin="5,0,10,0" Visibility="Collapsed"/>
+#            <CheckBox Name="ModernAuthCheckBox" Content="Use Modern Auth" Margin="5,0,10,0" VerticalAlignment="Center"/>
+#        </StackPanel>
+
 
 ### Load JSON configuration
 if (Test-Path $jsonconfig) {
@@ -71,9 +82,10 @@ $window = [Windows.Markup.XamlReader]::Load($reader)
 
 # Get elements by name
 $tabControl = $window.FindName("tabControl")
-$usernameTextBox = $window.FindName("UsernameTextBox")
-$passwordTextBox = $window.FindName("PasswordTextBox")
-$modernAuthCheckBox = $window.FindName("ModernAuthCheckBox")
+#$usernameTextBox = $window.FindName("UsernameTextBox")
+#$passwordTextBox = $window.FindName("PasswordTextBox")
+#$modernAuthCheckBox = $window.FindName("ModernAuthCheckBox")
+$statusText = $window.FindName("statusText")
 
 # Create tabs and buttons from JSON configuration
 foreach ($tab in $config.Tabs) {
@@ -143,9 +155,6 @@ foreach ($tab in $config.Tabs) {
 			# Check if script file exists
 			if (-not (Test-Path $button.ScriptPath)) {
 				$btn.Background = [System.Windows.Media.Brushes]::LightPink
-				$btn.ToolTip = "[ ERROR: Script not found @ $($button.ScriptPath) ]`n`n$($button.ToolTip)"
-			} else {
-					$btn.ToolTip = "[ Script @ $($button.ScriptPath) ]`n`n$($button.ToolTip)"
             }
 
 			$btn.Add_Click({
@@ -156,6 +165,23 @@ foreach ($tab in $config.Tabs) {
 					[System.Windows.MessageBox]::Show("The script file cannot be found at the configured location: `n`n  $scriptPath", "File Not Found", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Error)
 				}
 			})
+
+            $btn.Add_MouseEnter({
+                $scriptPath = $_.Source.Tag.ScriptPath
+				if (-not (Test-Path $scriptPath)) {
+					$statusText.Foreground = [System.Windows.Media.Brushes]::Red
+                    $statusText.Text = "ERROR: Script not found. Please verify that the file exists at " + $scriptPath
+                } else {
+					$statusText.Foreground = [System.Windows.Media.Brushes]::Black
+                    $statusText.Text = "Click to run " + $_.Source.Tag.ScriptPath
+                }
+            })
+
+			$btn.Add_MouseLeave({
+				$statusText.Foreground = [System.Windows.Media.Brushes]::Black
+				$statusText.Text = "Please select a script to launch."
+			})
+
             $null = $groupStackPanel.Children.Add($btn)
 		}
 		$groupBox.Content = $groupStackPanel
@@ -197,7 +223,6 @@ foreach ($tab in $config.Tabs) {
         [void]$grid.Children.Add($blankGroupBox)
         $columnCounter++
     }
-
 
     $tabItem.Content = $grid
     [void]$tabControl.Items.Add($tabItem)

@@ -18,7 +18,7 @@
         {
           "Content": "Button 3",
           "ScriptPath": ".\\Path\\To\\Your\\Script3.ps1",
-          "ToolTip": "Description for Button 3",
+          "ToolTip": "Description for Button 3. \n\nExample of having multiple rows in a tooltip.",
           "Group": "Group Name 2"
         }
       ]
