@@ -9,8 +9,8 @@ Launch PSGui.ps1 from Powershell and it will load the configuration found in "co
 
 This configuration file is what the script uses to create the buttons for launching other Powershell scripts.
 
-You can additionally launch an alternate config file using the "-load" command.
-* For example: PSGui.ps1 -load altconfig.json
+You can additionally launch an alternate config file using the "-jsonconfig" command.
+* For example: PSGui.ps1 -jsonconfig altconfig.json
 
 Two samples scripts are included in the Scripts folder.  These are primarily to show that the buttons work and to show the button color changes if a script file is not found.
 * One simply lists the files found in C:\Windows\.
