@@ -34,7 +34,7 @@ If a button does not have a `Group` value assigned, it will default to a `Genera
 
 The script will also try to verify the path of each `ScriptPath` value for every button.  If it cannot find the referenced file, the button will color will change to light red and show an error message in the button tooltip.  If a red button is clicked, it will return a Windows message stating the file cannot be found along with the path is trying to verify.
 
-config.json tree structure view
+# config.json tree structure view
 This is a tree view showing the general layout of the default configuration file.
 
 This example has two tabs.  The first tab contains three buttons organized into two groups.  The second tab has buttons organized into two groups.  Since Button 5 does not have a `Group` name value, it will automatically be placed into a group named `General Scripts`.
